@@ -53,7 +53,8 @@
         .lang-switch {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 15px;
+            /* Increased gap */
             margin-bottom: 20px;
         }
 
@@ -61,10 +62,12 @@
             background: none;
             border: 1px solid var(--primary-color);
             color: var(--primary-color);
-            padding: 5px 10px;
+            padding: 8px 16px;
+            /* Increased padding for better click area */
             border-radius: 20px;
             cursor: pointer;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
+            /* Slightly larger font */
             transition: all 0.2s;
         }
 
@@ -142,11 +145,21 @@
         p.role {
             color: #64748b;
             margin: 0 0 35px;
-            font-size: 0.95rem;
-            font-weight: 300;
+            font-size: 1.1rem;
+            /* Larger title */
+            font-weight: 600;
+            /* Bolder title */
             letter-spacing: 0.5px;
-            text-transform: uppercase;
             line-height: 1.4;
+        }
+
+        .role-detail {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 300;
+            margin-top: 4px;
+            text-transform: none;
+            /* Normal case for details */
         }
 
         .links-container {
@@ -290,12 +303,24 @@
         </div>
 
         <h1>Leonardo Nazareth</h1>
-        <p class="role" data-lang="en" class="active">Sanitation Consultant | Specialist in Condominial systems and
-            spatial data analysis</p>
-        <p class="role" data-lang="pt">Consultor de Saneamento | Especialista em sistemas Condominiais e análise de
-            dados espaciais</p>
-        <p class="role" data-lang="es">Consultor de Saneamiento | Especialista en sistemas de Condominio y análisis de
-            datos espaciales</p>
+
+        <!-- English Role -->
+        <p class="role" data-lang="en" class="active">
+            Sanitation Consultant
+            <span class="role-detail">Specialist in Condominial systems and spatial data analysis</span>
+        </p>
+
+        <!-- Portuguese Role -->
+        <p class="role" data-lang="pt">
+            Consultor de Saneamento
+            <span class="role-detail">Especialista em sistemas Condominiais e análise de dados espaciais</span>
+        </p>
+
+        <!-- Spanish Role -->
+        <p class="role" data-lang="es">
+            Consultor de Saneamiento
+            <span class="role-detail">Especialista en sistemas Condominiales y análisis de datos espaciales</span>
+        </p>
 
         <div class="links-container">
             <!-- LinkedIn -->
@@ -390,8 +415,8 @@
             });
         }
 
-        // Initialize with default (already done via HTML classes, but good for safety)
-        // setLang('en'); 
+        // Initialize with default to ensure visibility on load
+        setLang('en');
     </script>
 
 </body>
