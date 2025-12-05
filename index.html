@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leo Nazareth | Contacts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #006994;
+            /* Ocean Blue */
+            --secondary-color: #e0f7fa;
+            /* Light Water Cyan */
+            --accent-color: #00a8e8;
+            /* Bright Water Blue */
+            --text-color: #2c3e50;
+            --bg-color: #f8fdff;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(0, 168, 232, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 105, 148, 0.05) 0%, transparent 20%);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0, 105, 148, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .lang-switch {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 5px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        .lang-btn.active,
+        .lang-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .profile-wrapper {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 25px;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #fff;
+            box-shadow: 0 8px 20px rgba(0, 105, 148, 0.15);
+            position: relative;
+            z-index: 2;
+            filter: grayscale(100%);
+            /* Black and white filter */
+        }
+
+        /* Water ripple effect behind profile */
+        .ripple {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 1px solid var(--accent-color);
+            opacity: 0;
+            animation: ripple 3s infinite;
+            z-index: 1;
+        }
+
+        .ripple:nth-child(2) {
+            animation-delay: 1s;
+        }
+
+        .ripple:nth-child(3) {
+            animation-delay: 2s;
+        }
+
+        @keyframes ripple {
+            0% {
+                width: 100%;
+                height: 100%;
+                opacity: 0.4;
+            }
+
+            100% {
+                width: 160%;
+                height: 160%;
+                opacity: 0;
+            }
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            letter-spacing: -0.5px;
+        }
+
+        p.role {
+            color: #64748b;
+            margin: 0 0 35px;
+            font-size: 1rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .link-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 18px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(0, 105, 148, 0.08);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(224, 247, 250, 0.5), transparent);
+            transform: translateX(-100%);
+            transition: 0.5s;
+        }
+
+        .link-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 20px rgba(0, 105, 148, 0.12);
+            border-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        .link-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .bio-section {
+            text-align: left;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #555;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .bio-section h2 {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
+        /* Custom Icon Placeholders */
+        .icon {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        /* Hide elements not matching current language */
+        [data-lang]:not(.active) {
+            display: none;
+        }
+
+        /* Flex elements need to be flex when active */
+        .links-container[data-lang].active {
+            display: flex;
+        }
+    </style>
+
+    .container {
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    padding: 40px 30px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0, 105, 148, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .lang-switch {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    }
+
+    .lang-btn {
+    background: none;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 5px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+    }
+
+    .lang-btn.active,
+    .lang-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+    }
+
+    .profile-wrapper {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    margin: 0 auto 25px;
+    }
+
+    .profile-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #fff;
+    box-shadow: 0 8px 20px rgba(0, 105, 148, 0.15);
+    position: relative;
+    z-index: 2;
+    filter: grayscale(100%);
+    /* Black and white filter */
+    }
+
+    /* Water ripple effect behind profile */
+    .ripple {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1px solid var(--accent-color);
+    opacity: 0;
+    animation: ripple 3s infinite;
+    z-index: 1;
+    }
+
+    .ripple:nth-child(2) {
+    animation-delay: 1s;
+    }
+
+    .ripple:nth-child(3) {
+    animation-delay: 2s;
+    }
+
+    @keyframes ripple {
+    0% {
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+    }
+
+    100% {
+    width: 160%;
+    height: 160%;
+    opacity: 0;
+    }
+    }
+
+    h1 {
+    margin: 0 0 8px;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    letter-spacing: -0.5px;
+    }
+
+    p.role {
+    color: #64748b;
+    margin: 0 0 35px;
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    }
+
+    .links-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 40px;
+    }
+
+    .link-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 18px;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 105, 148, 0.08);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+    }
+
+    .link-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(224, 247, 250, 0.5), transparent);
+    transform: translateX(-100%);
+    transition: 0.5s;
+    }
+
+    .link-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 20px rgba(0, 105, 148, 0.12);
+    border-color: var(--accent-color);
+    color: var(--primary-color);
+    }
+
+    .link-card:hover::before {
+    transform: translateX(100%);
+    }
+
+    .bio-section {
+    text-align: left;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #555;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    }
+
+    .bio-section h2 {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    }
+
+    footer {
+    margin-top: 50px;
+    font-size: 0.85rem;
+    color: #94a3b8;
+    }
+
+    /* Custom Icon Placeholders */
+    .icon {
+    margin-right: 10px;
+    font-size: 1.2em;
+    }
+
+    /* Hide elements not matching current language */
+    [data-lang]:not(.active) {
+    display: none;
+    }
+
+    /* Flex elements need to be flex when active */
+    .links-container[data-lang].active {
+    display: flex;
+    }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="lang-switch">
+            <button class="lang-btn active" onclick="setLang('en')">EN</button>
+            <button class="lang-btn" onclick="setLang('pt')">PT</button>
+            <button class="lang-btn" onclick="setLang('es')">ES</button>
+        </div>
+
+        <div class="profile-wrapper">
+            <div class="ripple"></div>
+            <div class="ripple"></div>
+        </div>
+
+        <p data-lang="en" class="active">
+            Civil Engineer holding an MSc in Water and Sustainable Development, specializing in Governance and
+            Management (IHE Delft, Netherlands). Over 10 years of experience in the design and implementation of
+            Condominial systems and in applying spatial data analysis (GIS) within the sanitation sector. Consultant for
+            the Inter-American Development Bank (IDB) and the World Bank. Creator of the open-source software
+            <strong>RedBasica</strong> for sewerage system design under the <a
+                href="https://sanihub.org/en/courses/video-lessons-sanihub-redbasica" target="_blank">SaniHUB</a>
+            initiative.
+        </p>
+        <p data-lang="pt">
+            Engenheiro Civil com Mestrado em Água e Desenvolvimento Sustentável, especializado em Governança e Gestão
+            (IHE Delft, Holanda). Mais de 10 anos de experiência no projeto e implementação de sistemas Condominiais e
+            na aplicação de análise espacial (SIG) no setor de saneamento. Consultor do Banco Interamericano de
+            Desenvolvimento (BID) e do Banco Mundial. Criador do software open-source <strong>RedBasica</strong> para
+            projetos de redes de esgoto sob a iniciativa <a
+                href="https://sanihub.org/en/courses/video-lessons-sanihub-redbasica" target="_blank">SaniHUB</a>.
+        </p>
+        <p data-lang="es">
+            Ingeniero Civil con Maestría en Agua y Desarrollo Sostenible, especializado en Gobernanza y Gestión (IHE
+            Delft, Países Bajos). Más de 10 años de experiencia en el diseño e implementación de sistemas condominiales
+            y en el uso de análisis espacial (SIG) en el sector de saneamiento. Consultor del Banco Interamericano de
+            Desarrollo (BID) y del Banco Mundial. Creador del software de código abierto <strong>RedBasica</strong> para
+            el diseño de redes de alcantarillado bajo la iniciativa <a
+                href="https://sanihub.org/en/courses/video-lessons-sanihub-redbasica" target="_blank">SaniHUB</a>.
+        </p>
+        <script>
+            function setLang(lang) {
+                // Remove active class from all elements with data-lang
+                document.querySelectorAll('[data-lang]').forEach(el => {
+                    el.classList.remove('active');
+                    if (el.getAttribute('data-lang') === lang) {
+                        el.classList.add('active');
+                    }
+                });
+
+                // Update buttons
+                document.querySelectorAll('.lang-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.textContent.toLowerCase() === lang) {
+                        btn.classList.add('active');
+                    }
+                });
+            }
+
+            // Initialize with default (already done via HTML classes, but good for safety)
+            // setLang('en'); 
+        </script>
+
+</body>
+
+</html>
