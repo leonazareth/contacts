@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leo Nazareth | Contacts</title>
+    <title>Leonardo Nazareth | Contacts</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
@@ -142,17 +142,24 @@
         p.role {
             color: #64748b;
             margin: 0 0 35px;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 300;
             letter-spacing: 0.5px;
             text-transform: uppercase;
+            line-height: 1.4;
         }
 
         .links-container {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 20px;
             margin-bottom: 40px;
+        }
+
+        .contact-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
         .link-card {
@@ -170,6 +177,8 @@
             font-weight: 500;
             position: relative;
             overflow: hidden;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .link-card::before {
@@ -193,6 +202,24 @@
 
         .link-card:hover::before {
             transform: translateX(100%);
+        }
+
+        .copy-text {
+            font-size: 0.85rem;
+            color: #64748b;
+            background: rgba(224, 247, 250, 0.3);
+            padding: 6px 12px;
+            border-radius: 12px;
+            align-self: center;
+            cursor: text;
+            user-select: all;
+            /* Makes selection easier */
+            transition: background 0.2s;
+        }
+
+        .copy-text:hover {
+            background: rgba(224, 247, 250, 0.8);
+            color: var(--primary-color);
         }
 
         .bio-section {
@@ -220,6 +247,18 @@
         .icon {
             margin-right: 10px;
             font-size: 1.2em;
+            display: flex;
+            align-items: center;
+        }
+
+        .custom-icon-img {
+            height: 24px;
+            width: auto;
+            filter: opacity(0.8);
+        }
+
+        .link-card:hover .custom-icon-img {
+            filter: opacity(1);
         }
 
         /* Hide elements not matching current language */
@@ -247,33 +286,46 @@
             <div class="ripple"></div>
             <div class="ripple"></div>
             <div class="ripple"></div>
-            <img src="profile.jpg" alt="Leo Nazareth" class="profile-img">
+            <img src="profile.jpg" alt="Leonardo Nazareth" class="profile-img">
         </div>
 
-        <h1>Leo Nazareth</h1>
-        <p class="role" data-lang="en" class="active">Independent Verification & Logistics</p>
-        <p class="role" data-lang="pt">Verificação Independente e Logística</p>
-        <p class="role" data-lang="es">Verificación Independiente y Logística</p>
+        <h1>Leonardo Nazareth</h1>
+        <p class="role" data-lang="en" class="active">Sanitation Consultant | Specialist in Condominial systems and
+            spatial data analysis</p>
+        <p class="role" data-lang="pt">Consultor de Saneamento | Especialista em sistemas Condominiais e análise de
+            dados espaciais</p>
+        <p class="role" data-lang="es">Consultor de Saneamiento | Especialista en sistemas de Condominio y análisis de
+            datos espaciales</p>
 
         <div class="links-container">
+            <!-- LinkedIn -->
             <a href="https://www.linkedin.com/in/leonardonazareth/" target="_blank" class="link-card">
-                <span class="icon">in</span>
+                <span class="icon"><img src="InBug-Black.png" alt="LinkedIn" class="custom-icon-img"></span>
                 <span data-lang="en" class="active">Connect on LinkedIn</span>
                 <span data-lang="pt">Conectar no LinkedIn</span>
                 <span data-lang="es">Conectar en LinkedIn</span>
             </a>
 
-            <a href="mailto:leonazareth@gmail.com" class="link-card">
-                <span class="icon">✉</span>
-                <span data-lang="en" class="active">Email Me</span>
-                <span data-lang="pt">Envie um Email</span>
-                <span data-lang="es">Envíame un Correo</span>
-            </a>
+            <!-- Email Group -->
+            <div class="contact-group">
+                <a href="mailto:leonazareth@gmail.com" class="link-card">
+                    <span class="icon">✉</span>
+                    <span data-lang="en" class="active">Email Me</span>
+                    <span data-lang="pt">Envie um Email</span>
+                    <span data-lang="es">Envíame un Correo</span>
+                </a>
+                <div class="copy-text">leonazareth@gmail.com</div>
+            </div>
 
-            <a href="https://wa.me/qr/6QKPAMHB6B2OC1" target="_blank" class="link-card">
-                <span class="icon">✆</span> WhatsApp
-            </a>
+            <!-- WhatsApp Group -->
+            <div class="contact-group">
+                <a href="https://wa.me/qr/6QKPAMHB6B2OC1" target="_blank" class="link-card">
+                    <span class="icon">✆</span> WhatsApp
+                </a>
+                <div class="copy-text">+55 67 981209190</div>
+            </div>
 
+            <!-- GitHub -->
             <a href="https://github.com/leonazareth" target="_blank" class="link-card">
                 <span class="icon">GitHub</span>
                 <span data-lang="en" class="active">GitHub Portfolio</span>
@@ -315,7 +367,7 @@
         </div>
 
         <footer>
-            © 2025 Leo Nazareth | SaniHUB
+            © 2025 Leonardo Nazareth | SaniHUB
         </footer>
     </div>
 
