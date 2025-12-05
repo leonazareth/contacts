@@ -173,8 +173,9 @@
 
         .contact-group {
             display: flex;
-            flex-direction: column;
-            gap: 8px;
+            flex-direction: row;
+            align-items: center;
+            gap: 12px;
         }
 
         .link-card {
@@ -192,8 +193,13 @@
             font-weight: 500;
             position: relative;
             overflow: hidden;
-            width: 100%;
+            flex: 0 0 auto;
             box-sizing: border-box;
+        }
+
+        .contact-group .link-card {
+            width: auto;
+            min-width: 140px;
         }
 
         .link-card::before {
@@ -220,21 +226,40 @@
         }
 
         .copy-text {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: #64748b;
             background: rgba(224, 247, 250, 0.3);
-            padding: 6px 12px;
+            padding: 8px 14px;
             border-radius: 12px;
-            align-self: center;
-            cursor: text;
-            user-select: all;
-            /* Makes selection easier */
-            transition: background 0.2s;
+            cursor: pointer;
+            transition: all 0.2s;
+            flex: 1;
         }
 
         .copy-text:hover {
             background: rgba(224, 247, 250, 0.8);
             color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .copy-toast {
+            position: fixed;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            pointer-events: none;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 105, 148, 0.3);
+        }
+
+        .copy-toast.show {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .bio-section {
@@ -360,7 +385,8 @@
                     <span data-lang="pt">Envie um Email</span>
                     <span data-lang="es">Envíame un Correo</span>
                 </a>
-                <div class="copy-text">leonazareth@gmail.com</div>
+                <div class="copy-text" onclick="copyToClipboard('leonazareth@gmail.com', event)">leonazareth@gmail.com
+                </div>
             </div>
 
             <!-- WhatsApp Group -->
@@ -368,16 +394,10 @@
                 <a href="https://wa.me/qr/6QKPAMHB6B2OC1" target="_blank" class="link-card">
                     <span class="icon">✆</span> WhatsApp
                 </a>
-                <div class="copy-text">+55 67 981209190</div>
+                <div class="copy-text" onclick="copyToClipboard('+55 67 981209190', event)">+55 67 981209190</div>
             </div>
 
-            <!-- GitHub -->
-            <a href="https://github.com/leonazareth" target="_blank" class="link-card">
-                <span class="icon">GitHub</span>
-                <span data-lang="en" class="active">GitHub Portfolio</span>
-                <span data-lang="pt">Portfólio GitHub</span>
-                <span data-lang="es">Portafolio GitHub</span>
-            </a>
+
         </div>
 
         <div class="bio-section">
@@ -440,6 +460,35 @@
 
         // Initialize with default to ensure visibility on load
         setLang('en');
+
+        // Copy to clipboard function
+        function copyToClipboard(text, event) {
+            // Copy to clipboard
+            navigator.clipboard.writeText(text).then(() => {
+                // Create toast element
+                const toast = document.createElement('div');
+                toast.className = 'copy-toast';
+                toast.textContent = 'Copied!';
+                document.body.appendChild(toast);
+
+                // Position toast near click
+                const x = event.clientX || (event.touches && event.touches[0].clientX) || window.innerWidth / 2;
+                const y = event.clientY || (event.touches && event.touches[0].clientY) || window.innerHeight / 2;
+                toast.style.left = x + 'px';
+                toast.style.top = (y - 40) + 'px';
+
+                // Show toast
+                setTimeout(() => toast.classList.add('show'), 10);
+
+                // Hide and remove toast
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    setTimeout(() => document.body.removeChild(toast), 300);
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+            });
+        }
     </script>
 
 </body>
