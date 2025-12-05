@@ -233,6 +233,8 @@
             border-radius: 12px;
             cursor: pointer;
             transition: all 0.2s;
+            user-select: none;
+            -webkit-user-select: none;
             width: calc(50% - 4px);
             flex: 0 0 calc(50% - 4px);
         }
@@ -501,7 +503,7 @@
                 setTimeout(() => {
                     toast.classList.remove('show');
                     setTimeout(() => document.body.removeChild(toast), 300);
-                }, 2000);
+                }, 500);
             }).catch(err => {
                 console.error('Failed to copy:', err);
             });
